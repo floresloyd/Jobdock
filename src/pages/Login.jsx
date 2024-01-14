@@ -50,9 +50,6 @@ function Login() {
                 </form>
             </div>
         </div>
-        <footer className="login-footer">
-            JobDock © 2024
-        </footer>
     </div>
 );
 }

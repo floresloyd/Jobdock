@@ -1,0 +1,53 @@
+.job-card {
+    background:  #e1e5f2;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    width: 250px; /* Adjust width as needed */
+    box-sizing: border-box;
+}
+
+.job-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.job-card p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 8px 12px; /* Reduced padding */
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none; /* This is for <a> elements to remove underline */
+    font-size: 0.85rem; /* Reduced font size for smaller button text */
+    display: inline-block; /* To apply padding and centering for <a> elements */
+    margin: 0 4px; /* Add margin to ensure buttons don't touch */
+}
+
+.btn:hover {
+    background: #555;
+}
+
+/* If you want to specifically style the "Go to Link" button differently */
+.btn:first-child {
+    background: #007bff;
+}
+
+.btn:first-child:hover {
+    background: #0056b3;
+}

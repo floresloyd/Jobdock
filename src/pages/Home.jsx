@@ -1,17 +1,20 @@
+/* eslint-disable no-unused-vars */
 {
   /** Home page. This is where you are rerouted once you log in. */
 }
+
 import { useState, useEffect, useRef } from "react";
-import { signOut, getAuth } from "firebase/auth";
-import { userLoginDatabase, jobDataBase } from "../FirebaseClient";
-import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+import { jobDataBase } from "../FirebaseClient";
 import { collection, getDocs, addDoc } from "firebase/firestore";
+import { query, where } from "firebase/firestore";
+import JobCard from "../components/JobCard";
+import './Home.css'
 
 function Home() {
-  const [jobs, setJobs] = useState([]);
-  const history = useNavigate();
+  const [jobs, setJobs] = useState([]); // Used to hold all jobs in the database
   const formRef = useRef(null); // Reference to the form element
-  const auth = getAuth();
+  const auth = getAuth(); // used to access current logged in user
 
   // Get the current user's ID
   const currentUserId = auth.currentUser ? auth.currentUser.uid : null;
@@ -19,37 +22,34 @@ function Home() {
   // Define the collection reference outside useEffect
   const colRef = collection(jobDataBase, "jobs");
 
+  // Keeps track of current jobs of the user
   useEffect(() => {
     if (currentUserId) {
-      getDocs(colRef)
+      // Create a query against the collection.
+      const queryRef = query(colRef, where("userid", "==", currentUserId)); // Fixed 'new query' to 'query'
+
+      getDocs(queryRef)
         .then((snapshot) => {
-          const fetchedJobs = snapshot.docs
-            .map((doc) => ({ ...doc.data(), id: doc.id }))
-            .filter((job) => job.userid === currentUserId); // Filter jobs by current user's ID
+          const fetchedJobs = snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
           setJobs(fetchedJobs);
         })
         .catch((err) => {
-          console.log(err.message);
+          console.error("Error fetching documents:", err);
         });
     }
-  }, [currentUserId, colRef]); // Include colRef in dependencies array
+  }, [currentUserId]); // Removed colRef from dependencies array since it's no longer directly used
 
-  const handleSignOut = () => {
-    signOut(userLoginDatabase)
-      .then(() => {
-        history("/");
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
-
+  // Function to access user id
   function getCurrentUserId() {
     const auth = getAuth();
     const user = auth.currentUser;
     return user ? user.uid : null;
   }
 
+  // Format date into database format
   function formatDate(date) {
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -57,6 +57,7 @@ function Home() {
     return `${year}-${month}-${day}`;
   }
 
+  // Add role button
   const handleAddRole = (e) => {
     e.preventDefault();
     const role = e.target.role.value;
@@ -67,6 +68,7 @@ function Home() {
     const status = e.target.status.value;
     const userid = getCurrentUserId();
 
+    // Add entry to the database
     addDoc(colRef, {
       role,
       employer,
@@ -79,7 +81,6 @@ function Home() {
       .then(() => {
         formRef.current.reset(); // Reset the form fields
         alert("Job Added");
-        window.location.reload(); // rerender
       })
       .catch((err) => {
         console.log(err.message);
@@ -87,46 +88,32 @@ function Home() {
   };
 
   return (
-    <div>
-      <h1>Home</h1>
-      <button onClick={handleSignOut}>Sign Out</button>
-      <form ref={formRef} onSubmit={handleAddRole}>
-        <input name="role" placeholder="Role" required />
-        <input name="employer" placeholder="Employer" required />
-        <input name="postinglink" placeholder="Posting Link" required />
-        <input name="contact" placeholder="Contact" />
+    <div className="home-container">
+      <div className="controls">
+        <button className="button-popup" onClick={() => {alert('Add job')}}>Add Job</button>
+        <button className="sort-btn" onClick={() => {alert("Sort")}}>Sort by</button>
+        <div className="search-sort">
+          <input type="text" name="search" placeholder="Search" className="search-box" />
+          <button className="search-btn" onClick={() => {alert("Search")}}>Search</button>
+        </div>
+      </div>
 
-        <select name="status" required>
-          <option value="" disabled hidden>
-            Select Status
-          </option>
-          <option value="applied">Applied</option>
-          <option value="saved">Saved</option>
-        </select>
-
-        <button type="submit">Add a Role</button>
-      </form>
-
-      <div>
+      <div className="job-cards-container">
         {jobs.map((job) => (
-          <div key={job.id}>
-            {/* Render each job */}
-            <h2>{job.role}</h2> {/* Changed from job.title to job.role */}
-            <p>Employer: {job.employer}</p>
-            <p>Contact: {job.contact}</p>
-            <p>
-              Application Date:{" "}
-              {new Date(job.dateapplied.seconds * 1000).toLocaleDateString()}
-            </p>
-            <p>Status: {job.status}</p>
-            <a href={job.postinglink} target="_blank" rel="noopener noreferrer">
-              Job Posting
-            </a>
-          </div>
+          <JobCard
+            key={job.id}
+            role={job.role}
+            employer={job.employer}
+            dateapplied={job.dateapplied}
+            status={job.status}
+            contact={job.contact}
+            postinglink={job.postinglink}
+          />
         ))}
       </div>
     </div>
   );
 }
+
 
 export default Home;

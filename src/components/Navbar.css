@@ -1,0 +1,56 @@
+body {
+    padding-top: 70px
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Make the navbar stay at the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    background-color: #333; /* Background color of the navbar */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Spacing inside the navbar */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Shadow for a floating effect */
+    z-index: 1000; /* Ensure navbar is above other content */
+    padding-right: 50px;
+}
+  
+  .nav-links {
+    display: flex; /* Aligns the Home and Stats links next to each other */
+  }
+  
+  .nav-item {
+    margin: 0 15px; /* Spacing between nav items */
+    font-weight: normal; /* Non-bold font */
+    color: #ddd; /* Subtle color for the links */
+    text-decoration: none; /* Removes underline from links */
+  }
+  
+  .nav-item:hover {
+    text-decoration: underline; /* Adds underline on hover for visual feedback */
+  }
+  
+  .signout-btn {
+    padding: 5px 15px; /* Adjust padding to fit text */
+    background-color: #f44336; /* Button color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Shadow for the button */
+    font-size: 1rem; /* Adjust font size to ensure it fits */
+    white-space: nowrap; /* Prevents text from wrapping */
+    margin-right: 30px;
+  }
+  
+  .signout-btn:hover {
+    background-color: #d32f2f; /* Darken button color on hover */
+  }
+  
+  /* Ensuring the navbar is not too bold and looks subtle */
+  .navbar h1, .navbar a {
+    font-weight: 400; /* Non-bold font weight for the navbar items */
+  }
+  

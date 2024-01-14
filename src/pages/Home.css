@@ -1,0 +1,43 @@
+.home-container {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .controls {
+    margin-bottom: 20px;
+  }
+  
+  .button-popup, .search-btn, .sort-btn {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button-popup {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .search-sort {
+    display: inline-block;
+  }
+  
+  .search-box {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+  }
+  
+  .search-btn, .sort-btn {
+    background-color: #333;
+    color: white;
+  }
+  
+  .job-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
