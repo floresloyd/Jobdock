@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { userLoginDatabase } from "../FirebaseClient";
 import { useNavigate } from "react-router-dom";
+import './Register.css'
 
 function Register() {
   // Redirect to home
@@ -24,14 +25,16 @@ function Register() {
   };
 
   return (
-    <div>
-      {/* Registration and Login */}
-      <h1> Sign Up </h1>
-      <form onSubmit={(e) => handleRegister(e)}>
-        <input name="email" placeholder="E-mail"></input>
-        <input name="password" type="password" placeholder="Password"></input>
-        <button> Sign up</button>
-      </form>
+    <div className="register-container">
+        <button className="back-button" onClick={() => reroute(-1)}>⬅</button>
+      <div className="register-content">
+        <h1>Sign Up for JobDock!</h1>
+        <form onSubmit={handleRegister}>
+          <input name="email" type="email" placeholder="email" required />
+          <input name="password" type="password" placeholder="password" required />
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
     </div>
   );
 }

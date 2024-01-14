@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
 import ProtectedRoute from './components/ProtectedRoute';
+import './app.css';
 
 class App extends React.Component {
   render() {

@@ -1,6 +1,7 @@
 import { sendPasswordResetEmail } from "firebase/auth";
 import { userLoginDatabase } from "../FirebaseClient";
 import { useNavigate } from "react-router-dom";
+import './ForgotPassword.css'
 
 function ForgotPassword() {
   const reroute = useNavigate();
@@ -20,12 +21,17 @@ function ForgotPassword() {
   };
 
   return (
-    <div>
-      <h1> Forgot Password </h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input name="email" />
-        <button> Reset </button>
-      </form>
+    <div className="forgot-password-container">
+    <button className="back-button" onClick={() => reroute(-1)}>⬅</button>
+      <div className="forgot-password-content">
+        <h1>Find your JobDock account</h1>
+        <p>Please enter the email address associated with your account, 
+           and we will send you a link to reset your password.</p>
+        <form onSubmit={handleSubmit}>
+          <input type="email" name="email" placeholder="email" required />
+          <button type="submit">Reset</button>
+        </form>
+      </div>
     </div>
   );
 }
