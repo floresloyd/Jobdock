@@ -141,8 +141,8 @@ function Home() {
         onChange={(e) => toggleView(e.target.value)}
         value={viewOption}
       >
-        <option value="jobcard">Job Card View</option>
-        <option value="jobsheet">Job Sheet View</option>
+        <option value="jobcard">Card View</option>
+        <option value="jobsheet">Sheet View</option>
       </select>
 
       <div className="job-cards-container">
