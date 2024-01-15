@@ -34,8 +34,8 @@ function Login() {
         <div className="login-content">
             <div className="logo-section">
                 <div className="logo"><img className="logo-image" src={logo} alt="JobDock Logo" /></div>
-                <p className="tagline">A handy harbor for job applications.<br />
-                    Effortlessly dock and anchor your career journey towards new horizons ⚓</p>
+                <p className="tagline">No need to venture out into rough waters to keep track of all those job applications. With JobDock, <br />
+                     anchor all you r applications to one place⚓</p>
             </div>
             <div className="form-section">
                 <h1>Welcome to JobDock!</h1>

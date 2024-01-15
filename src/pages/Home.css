@@ -4,6 +4,9 @@
   }
   
   .controls {
+    display: flex; /* Aligns all control elements in a row */
+    align-items: center; /* Centers the items vertically */
+    gap: 10px; /* Adds space between the items */
     margin-bottom: 20px;
   }
   
@@ -40,4 +43,28 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+  }
+
+  /* You might want to add a custom arrow indicator */
+.view-select-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .view-select-wrapper:after {
+    content: '▼';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: white;
+  }
+  
+  /* VIEW CONTROLS */
+  .search-box {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
   }

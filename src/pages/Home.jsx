@@ -9,10 +9,12 @@ import { jobDataBase } from "../FirebaseClient";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { query, where } from "firebase/firestore";
 import JobCard from "../components/JobCard";
-import './Home.css'
+import JobEntry from "../components/JobEntry";
+import "./Home.css";
 
 function Home() {
   const [jobs, setJobs] = useState([]); // Used to hold all jobs in the database
+  const [viewOption, setViewOption] = useState("jobcard"); // Handles view options
   const formRef = useRef(null); // Reference to the form element
   const auth = getAuth(); // used to access current logged in user
 
@@ -86,34 +88,92 @@ function Home() {
         console.log(err.message);
       });
   };
+  {
+    /** HOME PAGE FUNCTIONS DISPLAY */
+  }
+
+  const toggleView = (option) => {
+    console.log("Changing view to:", option);
+    setViewOption(option);
+  };
 
   return (
     <div className="home-container">
       <div className="controls">
-        <button className="button-popup" onClick={() => {alert('Add job')}}>Add Job</button>
-        <button className="sort-btn" onClick={() => {alert("Sort")}}>Sort by</button>
+        <button
+          className="button-popup"
+          onClick={() => {
+            alert("Add job");
+          }}
+        >
+          Add Job
+        </button>
+        <button
+          className="sort-btn"
+          onClick={() => {
+            alert("Sort");
+          }}
+        >
+          Sort by
+        </button>
+
         <div className="search-sort">
-          <input type="text" name="search" placeholder="Search" className="search-box" />
-          <button className="search-btn" onClick={() => {alert("Search")}}>Search</button>
+          <input
+            type="text"
+            name="search"
+            placeholder="Search"
+            className="search-box"
+          />
+          <button
+            className="search-btn"
+            onClick={() => {
+              alert("Search");
+            }}
+          >
+            Search
+          </button>
         </div>
       </div>
 
+      {/* Dropdown for view options */}
+      <select
+        className="view-select"
+        onChange={(e) => toggleView(e.target.value)}
+        value={viewOption}
+      >
+        <option value="jobcard">Job Card View</option>
+        <option value="jobsheet">Job Sheet View</option>
+      </select>
+
       <div className="job-cards-container">
-        {jobs.map((job) => (
-          <JobCard
-            key={job.id}
-            role={job.role}
-            employer={job.employer}
-            dateapplied={job.dateapplied}
-            status={job.status}
-            contact={job.contact}
-            postinglink={job.postinglink}
-          />
-        ))}
+        {jobs.map((job) =>
+          // Render the component based on the selected view option
+          viewOption === "jobcard" ? (
+            <JobCard
+              key={job.id}
+              role={job.role}
+              employer={job.employer}
+              dateapplied={job.dateapplied}
+              status={job.status}
+              contact={job.contact}
+              postinglink={job.postinglink}
+            />
+          ) : (
+            // Render the JobEntry (or JobSheet if you have a separate component) for the 'jobsheet' view
+            <JobEntry
+              key={job.id}
+              role={job.role}
+              employer={job.employer}
+              dateapplied={job.dateapplied}
+              status={job.status}
+              contact={job.contact}
+              postinglink={job.postinglink}
+            />
+          )
+        )}
       </div>
     </div>
   );
 }
-
 
 export default Home;

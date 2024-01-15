@@ -1,0 +1,103 @@
+/* JobEntry.css */
+
+.job-entry {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    padding: 10px;
+    border-bottom: 1px solid #e1e1e1;
+    background-color: #f0f0f0; /* Light grey background similar to the second image */
+    margin-top: 10px;
+    margin-left: -20px;
+    margin-right: 10px;
+    border-radius: 10px;
+  }
+  
+  .job-entry div {
+    margin: 3px 0; /* Provide a small margin for each div */
+    text-align: left; /* Align text to the left */
+  }
+  
+  .job-entry .expand-button {
+    margin-top: 5px; /* Add margin to the top of buttons */
+    padding: 6px 12px;
+    background-color: #76b852; /* Green color from the second image */
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .job-entry .expand-button:hover {
+    background-color: #5a9216; /* Darker green for hover effect */
+  }
+  
+  /* Style the buttons side by side */
+  .job-entry .button-container {
+    display: flex;
+  }
+  
+  .job-entry .button-container > button {
+    flex-grow: 1; /* Buttons take up equal space */
+    margin-right: 5px; /* Add margin between buttons */
+  }
+  
+  .job-entry .button-container > button:last-child {
+    margin-right: 0; /* No margin for the last button */
+  }
+  
+  /* Additional responsive styling if needed */
+  @media (min-width: 768px) {
+    .job-entry {
+      flex-direction: row; /* Side by side for larger screens */
+      align-items: center; /* Align items vertically in the center */
+    }
+  
+    .job-entry > div,
+    .job-entry .button-container {
+      flex: 1; /* Take up equal space */
+      margin-right: 10px; /* Add some margin to the right */
+    }
+  
+    .job-entry .button-container > button:last-child {
+      margin-right: 0; /* No margin for the last button on larger screens */
+    }
+  }
+  
+  /* Ensure the last div doesn't have extra margin on the right on larger screens */
+  .job-entry > div:last-child {
+    margin-right: 0;
+  }
+  
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 8px 12px; /* Reduced padding */
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none; /* This is for <a> elements to remove underline */
+    font-size: 0.85rem; /* Reduced font size for smaller button text */
+    display: inline-block; /* To apply padding and centering for <a> elements */
+    margin: 0 4px; /* Add margin to ensure buttons don't touch */
+}
+
+.btn:hover {
+    background: #555;
+}
+
+/* If you want to specifically style the "Go to Link" button differently */
+.btn:first-child {
+    background: #007bff;
+}
+
+.btn:first-child:hover {
+    background: #0056b3;
+}
