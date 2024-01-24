@@ -11,12 +11,16 @@ import { query, where } from "firebase/firestore";
 import JobCard from "../components/JobCard";
 import JobEntry from "../components/JobEntry";
 import "./Home.css";
+import Modal from "../components/Modal.jsx";
+import JobForm from "../components/JobForm.jsx";
 
 function Home() {
   const [jobs, setJobs] = useState([]); // Used to hold all jobs in the database
   const [viewOption, setViewOption] = useState("jobcard"); // Handles view options
   const formRef = useRef(null); // Reference to the form element
   const auth = getAuth(); // used to access current logged in user
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // State that handles if the modal (Greys background and centers job form) is open or not 
 
   // Get the current user's ID
   const currentUserId = auth.currentUser ? auth.currentUser.uid : null;
@@ -92,26 +96,33 @@ function Home() {
     /** HOME PAGE FUNCTIONS DISPLAY */
   }
 
+  // Changes : Card view to sheet view 
   const toggleView = (option) => {
     console.log("Changing view to:", option);
     setViewOption(option);
   };
 
+  // renders the modal
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+    console.log(isModalOpen)
+  };
+
+
   return (
     <div className="home-container">
       <div className="controls">
-        <button
-          className="button-popup"
-          onClick={() => {
-            alert("Add job");
-          }}
-        >
-          Add Job
-        </button>
+      <button className="button-popup" onClick={toggleModal}>
+        Add Job
+      </button>
+
+      <Modal isOpen={isModalOpen} onClose={toggleModal}>
+        <JobForm onClose={toggleModal} />
+      </Modal>
         <button
           className="sort-btn"
           onClick={() => {
-            alert("Sort");
+          alert("SORT")
           }}
         >
           Sort by
