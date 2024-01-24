@@ -1,70 +1,73 @@
 .home-container {
-    width: 100%;
-    padding: 20px;
-  }
-  
-  .controls {
-    display: flex; /* Aligns all control elements in a row */
-    align-items: center; /* Centers the items vertically */
-    gap: 10px; /* Adds space between the items */
-    margin-bottom: 20px;
-  }
-  
-  .button-popup, .search-btn, .sort-btn {
-    padding: 10px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .button-popup {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .search-sort {
-    display: inline-block;
-  }
-  
-  .search-box {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-right: 10px;
-  }
-  
-  .search-btn, .sort-btn {
-    background-color: #333;
-    color: white;
-  }
-  
-  .job-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+  width: 100%;
+  padding: 20px;
+}
 
-  /* You might want to add a custom arrow indicator */
+.controls {
+  display: flex; /* Aligns all control elements in a row */
+  align-items: center; /* Centers the items vertically */
+  gap: 10px; /* Adds space between the items */
+  margin-bottom: 20px;
+}
+
+.button-popup,
+.search-btn,
+.sort-btn {
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-popup {
+  background-color: #007bff;
+  color: white;
+}
+
+.search-sort {
+  display: inline-block;
+}
+
+.search-box {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-right: 10px;
+}
+
+.search-btn,
+.sort-btn {
+  background-color: #333;
+  color: white;
+}
+
+.job-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* You might want to add a custom arrow indicator */
 .view-select-wrapper {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .view-select-wrapper:after {
-    content: '▼';
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: white;
-  }
-  
-  /* VIEW CONTROLS */
-  .search-box {
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
+  position: relative;
+  display: inline-block;
+}
+
+.view-select-wrapper:after {
+  content: "▼";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: white;
+}
+
+/* VIEW CONTROLS */
+.search-box {
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
